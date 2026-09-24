@@ -1,0 +1,2481 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+build.gradle
+docs/INTEGRACION_GESTOPAGO.md
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+settings.gradle
+src/main/java/com/proyecto/servicios/App.java
+src/main/java/com/proyecto/servicios/client/GestoPagoAuthClient.java
+src/main/java/com/proyecto/servicios/client/GestoPagoProductClient.java
+src/main/java/com/proyecto/servicios/client/GestoPagoXmlParser.java
+src/main/java/com/proyecto/servicios/config/ConfigDB.java
+src/main/java/com/proyecto/servicios/config/FlywayConfig.java
+src/main/java/com/proyecto/servicios/config/GestoPagoBearerTokenInterceptor.java
+src/main/java/com/proyecto/servicios/config/GestoPagoErrorDecoder.java
+src/main/java/com/proyecto/servicios/config/GestoPagoProductClientConfig.java
+src/main/java/com/proyecto/servicios/config/OpenApi.java
+src/main/java/com/proyecto/servicios/controller/GestoPagoProductController.java
+src/main/java/com/proyecto/servicios/controller/PersonaController.java
+src/main/java/com/proyecto/servicios/entity/gestopago/GestoPagoToken.java
+src/main/java/com/proyecto/servicios/entity/sf/Personas.java
+src/main/java/com/proyecto/servicios/exception/GestoPagoAuthenticationException.java
+src/main/java/com/proyecto/servicios/exception/GestoPagoCommunicationException.java
+src/main/java/com/proyecto/servicios/exception/GestoPagoExceptionHandler.java
+src/main/java/com/proyecto/servicios/exception/GestoPagoIntegrationException.java
+src/main/java/com/proyecto/servicios/exception/GestoPagoTimeoutException.java
+src/main/java/com/proyecto/servicios/exception/GestoPagoUnsuccessfulResponseException.java
+src/main/java/com/proyecto/servicios/mapper/GestoPagoProductMapper.java
+src/main/java/com/proyecto/servicios/mapper/GestoPagoTokenMapper.java
+src/main/java/com/proyecto/servicios/model/EliminaPersonaRequest.java
+src/main/java/com/proyecto/servicios/model/GenericResponse.java
+src/main/java/com/proyecto/servicios/model/gestopago/GestoPagoAuthResponse.java
+src/main/java/com/proyecto/servicios/model/gestopago/GestoPagoMensaje.java
+src/main/java/com/proyecto/servicios/model/gestopago/GestoPagoProductDto.java
+src/main/java/com/proyecto/servicios/model/gestopago/GestoPagoProductListResponse.java
+src/main/java/com/proyecto/servicios/model/gestopago/ProductoGestoPago.java
+src/main/java/com/proyecto/servicios/model/gestopago/ProductosGestoPagoResponse.java
+src/main/java/com/proyecto/servicios/model/PersonaResponse.java
+src/main/java/com/proyecto/servicios/model/PersonasRequest.java
+src/main/java/com/proyecto/servicios/repositorys/gestopago/GestoPagoTokenRepository.java
+src/main/java/com/proyecto/servicios/repositorys/sf/PersonasRepository.java
+src/main/java/com/proyecto/servicios/service/GestoPagoProductService.java
+src/main/java/com/proyecto/servicios/service/GestoPagoTokenService.java
+src/main/java/com/proyecto/servicios/service/Impl/GestoPagoProductServiceImpl.java
+src/main/java/com/proyecto/servicios/service/Impl/GestoPagoTokenServiceImpl.java
+src/main/java/com/proyecto/servicios/service/Impl/PersonasServiceImpl.java
+src/main/java/com/proyecto/servicios/service/PersonaService.java
+src/main/resources/application.properties
+src/main/resources/db/migration/V1__create_gestopago_tokens.sql
+src/test/java/com/proyecto/servicios/config/GestoPagoBearerTokenInterceptorTest.java
+src/test/java/com/proyecto/servicios/config/GestoPagoErrorDecoderTest.java
+src/test/java/com/proyecto/servicios/service/Impl/GestoPagoProductServiceImplTest.java
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+.kotlin
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+</file>
+
+<file path="build.gradle">
+plugins {
+    id 'jacoco'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.3.6'//Versión de componentes de spring boot
+    id 'org.sonarqube' version '4.0.0.2929'
+    id "org.owasp.dependencycheck" version "8.1.2"
+    id 'com.github.ben-manes.versions' version '0.46.0'
+    id 'java'
+}
+
+group 'com.proyecto.servicio.empresa'
+version '1.0'
+
+// Se compila, prueba y ejecuta con JDK 17 aunque la máquina tenga instalado un JDK más nuevo.
+// Spring Boot 3.3.x, Lombok y Mockito del proyecto no son compatibles con JDK 26.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    //Spring Framework
+    implementation 'org.springframework.cloud:spring-cloud-config-client:4.1.4'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.4'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+    //Documentation y APIs
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0' //RevisarCompatibilidad
+    //Bases de datos
+    implementation 'org.postgresql:postgresql:42.7.3'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-database-postgresql'
+    implementation 'com.oracle.database.jdbc:ojdbc8:23.2.0.0'
+    implementation 'com.oracle.database.jdbc:ucp:23.2.0.0'
+    // implementation 'org.hibernate:hibernate-core:6.2.7.Final'
+    implementation 'org.hibernate:hibernate-core:6.5.3.Final'
+    implementation 'io.lettuce:lettuce-core:6.5.1.RELEASE'
+    //Seguridad
+    //implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    implementation 'com.auth0:jwks-rsa:0.22.1'
+    implementation 'com.auth0:java-jwt:4.4.0'
+    //Utilerias Apache Commons
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'commons-fileupload:commons-fileupload:1.5'
+    implementation 'commons-io:commons-io:2.18.0'
+    //implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.4.1'
+    implementation 'org.mapstruct:mapstruct:1.6.3'
+    //Serialización
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'org.json:json:20231013'
+    //Utilerias Google
+    implementation 'com.google.api-client:google-api-client:2.7.1'
+    implementation 'com.google.api-client:google-api-client-jackson2:2.7.1'
+    //Mail-XML
+    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.3'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+    //Soporte adicional  herramientas de desarrollo
+    implementation 'org.apache.opennlp:opennlp-tools:2.2.0'
+    implementation 'org.projectlombok:lombok:1.18.48'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    compileOnly 'org.projectlombok:lombok:1.18.48'
+    annotationProcessor 'org.projectlombok:lombok:1.18.48'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    testCompileOnly 'org.projectlombok:lombok:1.18.48'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.48'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-inline:5.1.1'
+    testImplementation 'com.h2database:h2:2.2.220'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+}
+
+configurations.all {
+    exclude group: "org.apache.logging.log4j", module: "log4j-api"
+    exclude group: "org.apache.logging.log4j", module: "log4j-to-slf4j"
+    exclude group: "log4j", module: "log4j"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+springBoot {
+    buildInfo {
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.exclusions", "**/App.java,**/model/**,**/entity/**,**/enums/**,**/config/**,**/controller/**,**/service/configuracion/**"
+    }
+}
+jacocoTestReport {
+    reports {
+        reports {
+            xml.required=true
+        }
+    }
+}
+
+//ejecutar applicación dentro de contenedor
+//sh gradlew clean build dockerImage dockerUp
+/**
+ * Genera imagen
+ */
+task dockerImage(type: Exec) {
+    println 'CrearImagen'
+    commandLine "docker", "build", "-t", "proyecto-core:0.1", "$projectDir"
+}
+
+/**
+ * Ejecuta imagen
+ */
+task dockerUp(type: Exec) {
+    println "Arranca imagen"
+    commandLine "docker-compose", "--compatibility", "up"
+}
+
+dependencyCheck {
+    formats = ["JSON", "HTML"]
+}
+</file>
+
+<file path="docs/INTEGRACION_GESTOPAGO.md">
+# Integración GestoPago – Catálogo de productos
+
+## Solución
+Se integró el endpoint `GET /sistema/service/getProductList.do` de GestoPago y se expone como
+`GET /gestopago/productos`, respetando las capas existentes del proyecto:
+
+Controller (GestoPagoProductController)
+  → Service (GestoPagoProductServiceImpl)
+    → Client (GestoPagoProductClient – Feign + GestoPagoXmlParser)
+      → GestoPago
+
+## Configuración
+Propiedades `gestopago.product.*` (misma convención que `gestopago.auth.*`): URL base, token,
+API key y timeouts. El token y la API key se leen de variables de entorno
+(`GESTOPAGO_PRODUCT_TOKEN`, `GESTOPAGO_API_KEY`); no están en el código ni en el repositorio.
+La ruta del endpoint vive en la anotación del cliente Feign, igual que en GestoPagoAuthClient.
+
+## Autenticación
+`GestoPagoBearerTokenInterceptor` agrega `Authorization: Bearer <token>` (y `X-API-Key` si existe).
+`GestoPagoProductClientConfig` no lleva `@Configuration`, para que el interceptor solo aplique a
+este cliente y no al cliente de login.
+
+## Manejo de errores
+| Escenario | Excepción | HTTP de nuestra API |
+|---|---|---|
+| Token vacío, 401 o 403 (token expirado) | GestoPagoAuthenticationException | 502 |
+| Timeout (conexión/lectura, 408, 504) | GestoPagoTimeoutException | 504 |
+| Error de red (conexión rechazada, DNS) | GestoPagoCommunicationException | 503 |
+| HTTP no 2xx, CODIGO ≠ "01", XML vacío o inválido | GestoPagoUnsuccessfulResponseException | 502 |
+
+`GestoPagoExceptionHandler` convierte estas excepciones en el `GenericResponse` del proyecto.
+
+## Logs
+Se registran el inicio y el fin de cada invocación (resultado, número de productos y duración).
+En los errores solo se registra el tipo de excepción y un mensaje controlado. El token, los headers
+y el cuerpo de la respuesta del proveedor nunca se registran (Feign en nivel `basic`).
+
+## Decisiones técnicas
+- **OpenFeign:** el proyecto ya lo usa (`@EnableFeignClients`, GestoPagoAuthClient).
+- **XML con JAXB:** GestoPago responde en XML con atributos; JAXB ya estaba en las dependencias.
+  El cliente recibe `byte[]` para respetar el encoding del XML, y el parser deshabilita DTD y
+  entidades externas (prevención de XXE).
+- **Validación del CODIGO:** GestoPago puede responder HTTP 200 con un error; solo "01" es éxito.
+- **Caché diaria:** GestoPago permite máximo 3 llamadas al día a getProductList, así que se usa
+  `@Cacheable` y un `@Scheduled` limpia la caché diariamente. Los errores no se guardan en caché.
+- **DTO externo separado del modelo interno** (MapStruct), para que un cambio del proveedor no
+  afecte a nuestra API.
+- **Inyección por constructor**, igual que en GestoPagoTokenServiceImpl.
+- **Refresh del token cada 24 h** (`gestopago.auth.refresh-rate-ms=86400000`), porque la
+  documentación prohíbe pedir tokens de más.
+
+## Pruebas
+`GestoPagoProductServiceImplTest` (JUnit 5 + Mockito, sin levantar Spring) cubre: éxito, catálogo
+vacío, CODIGO no exitoso, cuerpo vacío, XML inválido, HTTP 500, token expirado, timeout, timeout
+anidado, conexión rechazada y error genérico de Feign. Además hay pruebas del ErrorDecoder y del
+interceptor del token.
+
+## Mejora futura
+Obtener el token del que ya renueva `GestoPagoTokenService` y guarda en la base de datos, en lugar
+de tomarlo de la configuración.
+</file>
+
+<file path="gradle/wrapper/gradle-wrapper.properties">
+#Sat Jul 25 15:05:34 CST 2026
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.6.0-bin.zip
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+</file>
+
+<file path="gradlew">
+#!/bin/sh
+
+#
+# Copyright © 2015-2021 the original authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+##############################################################################
+#
+#   Gradle start up script for POSIX generated by Gradle.
+#
+#   Important for running:
+#
+#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
+#       noncompliant, but you have some other compliant shell such as ksh or
+#       bash, then to run this script, type that shell name before the whole
+#       command line, like:
+#
+#           ksh Gradle
+#
+#       Busybox and similar reduced shells will NOT work, because this script
+#       requires all of these POSIX shell features:
+#         * functions;
+#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
+#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
+#         * compound commands having a testable exit status, especially «case»;
+#         * various built-in commands including «command», «set», and «ulimit».
+#
+#   Important for patching:
+#
+#   (2) This script targets any POSIX shell, so it avoids extensions provided
+#       by Bash, Ksh, etc; in particular arrays are avoided.
+#
+#       The "traditional" practice of packing multiple parameters into a
+#       space-separated string is a well documented source of bugs and security
+#       problems, so this is (mostly) avoided, by progressively accumulating
+#       options in "$@", and eventually passing that to Java.
+#
+#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
+#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
+#       see the in-line comments for details.
+#
+#       There are tweaks for specific operating systems such as AIX, CygWin,
+#       Darwin, MinGW, and NonStop.
+#
+#   (3) This script is generated from the Groovy template
+#       https://github.com/gradle/gradle/blob/master/subprojects/plugins/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+#       within the Gradle project.
+#
+#       You can find Gradle at https://github.com/gradle/gradle/.
+#
+##############################################################################
+
+# Attempt to set APP_HOME
+
+# Resolve links: $0 may be a link
+app_path=$0
+
+# Need this for daisy-chained symlinks.
+while
+    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
+    [ -h "$app_path" ]
+do
+    ls=$( ls -ld "$app_path" )
+    link=${ls#*' -> '}
+    case $link in             #(
+      /*)   app_path=$link ;; #(
+      *)    app_path=$APP_HOME$link ;;
+    esac
+done
+
+APP_HOME=$( cd "${APP_HOME:-./}" && pwd -P ) || exit
+
+APP_NAME="Gradle"
+APP_BASE_NAME=${0##*/}
+
+# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+
+# Use the maximum available, or set MAX_FD != -1 to use that value.
+MAX_FD=maximum
+
+warn () {
+    echo "$*"
+} >&2
+
+die () {
+    echo
+    echo "$*"
+    echo
+    exit 1
+} >&2
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "$( uname )" in                #(
+  CYGWIN* )         cygwin=true  ;; #(
+  Darwin* )         darwin=true  ;; #(
+  MSYS* | MINGW* )  msys=true    ;; #(
+  NONSTOP* )        nonstop=true ;;
+esac
+
+CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+
+
+# Determine the Java command to use to start the JVM.
+if [ -n "$JAVA_HOME" ] ; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+        # IBM's JDK on AIX uses strange locations for the executables
+        JAVACMD=$JAVA_HOME/jre/sh/java
+    else
+        JAVACMD=$JAVA_HOME/bin/java
+    fi
+    if [ ! -x "$JAVACMD" ] ; then
+        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+else
+    JAVACMD=java
+    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+fi
+
+# Increase the maximum file descriptors if we can.
+if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
+    case $MAX_FD in #(
+      max*)
+        MAX_FD=$( ulimit -H -n ) ||
+            warn "Could not query maximum file descriptor limit"
+    esac
+    case $MAX_FD in  #(
+      '' | soft) :;; #(
+      *)
+        ulimit -n "$MAX_FD" ||
+            warn "Could not set maximum file descriptor limit to $MAX_FD"
+    esac
+fi
+
+# Collect all arguments for the java command, stacking in reverse order:
+#   * args from the command line
+#   * the main class name
+#   * -classpath
+#   * -D...appname settings
+#   * --module-path (only if needed)
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
+
+# For Cygwin or MSYS, switch paths to Windows format before running java
+if "$cygwin" || "$msys" ; then
+    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
+
+    JAVACMD=$( cygpath --unix "$JAVACMD" )
+
+    # Now convert the arguments - kludge to limit ourselves to /bin/sh
+    for arg do
+        if
+            case $arg in                                #(
+              -*)   false ;;                            # don't mess with options #(
+              /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
+                    [ -e "$t" ] ;;                      #(
+              *)    false ;;
+            esac
+        then
+            arg=$( cygpath --path --ignore --mixed "$arg" )
+        fi
+        # Roll the args list around exactly as many times as the number of
+        # args, so each arg winds up back in the position where it started, but
+        # possibly modified.
+        #
+        # NB: a `for` loop captures its iteration list before it begins, so
+        # changing the positional parameters here affects neither the number of
+        # iterations, nor the values presented in `arg`.
+        shift                   # remove old arg
+        set -- "$@" "$arg"      # push replacement arg
+    done
+fi
+
+# Collect all arguments for the java command;
+#   * $DEFAULT_JVM_OPTS, $JAVA_OPTS, and $GRADLE_OPTS can contain fragments of
+#     shell script including quotes and variable substitutions, so put them in
+#     double quotes to make sure that they get re-expanded; and
+#   * put everything else in single quotes, so that it's not re-expanded.
+
+set -- \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
+        -classpath "$CLASSPATH" \
+        org.gradle.wrapper.GradleWrapperMain \
+        "$@"
+
+# Use "xargs" to parse quoted args.
+#
+# With -n1 it outputs one arg per line, with the quotes and backslashes removed.
+#
+# In Bash we could simply go:
+#
+#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
+#   set -- "${ARGS[@]}" "$@"
+#
+# but POSIX shell has neither arrays nor command substitution, so instead we
+# post-process each arg (as a line of input to sed) to backslash-escape any
+# character that might be a shell metacharacter, then use eval to reverse
+# that process (while maintaining the separation between arguments), and wrap
+# the whole thing up as a single "set" statement.
+#
+# This will of course break if any of these variables contains a newline or
+# an unmatched quote.
+#
+
+eval "set -- $(
+        printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
+        xargs -n1 |
+        sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
+        tr '\n' ' '
+    )" '"$@"'
+
+exec "$JAVACMD" "$@"
+</file>
+
+<file path="gradlew.bat">
+@rem
+@rem Copyright 2015 the original author or authors.
+@rem
+@rem Licensed under the Apache License, Version 2.0 (the "License");
+@rem you may not use this file except in compliance with the License.
+@rem You may obtain a copy of the License at
+@rem
+@rem      https://www.apache.org/licenses/LICENSE-2.0
+@rem
+@rem Unless required by applicable law or agreed to in writing, software
+@rem distributed under the License is distributed on an "AS IS" BASIS,
+@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@rem See the License for the specific language governing permissions and
+@rem limitations under the License.
+@rem
+
+@if "%DEBUG%" == "" @echo off
+@rem ##########################################################################
+@rem
+@rem  Gradle startup script for Windows
+@rem
+@rem ##########################################################################
+
+@rem Set local scope for the variables with windows NT shell
+if "%OS%"=="Windows_NT" setlocal
+
+set DIRNAME=%~dp0
+if "%DIRNAME%" == "" set DIRNAME=.
+set APP_BASE_NAME=%~n0
+set APP_HOME=%DIRNAME%
+
+@rem Resolve any "." and ".." in APP_HOME to make it shorter.
+for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
+
+@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
+
+@rem Find java.exe
+if defined JAVA_HOME goto findJavaFromJavaHome
+
+set JAVA_EXE=java.exe
+%JAVA_EXE% -version >NUL 2>&1
+if "%ERRORLEVEL%" == "0" goto execute
+
+echo.
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+echo.
+echo Please set the JAVA_HOME variable in your environment to match the
+echo location of your Java installation.
+
+goto fail
+
+:findJavaFromJavaHome
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+
+if exist "%JAVA_EXE%" goto execute
+
+echo.
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
+echo.
+echo Please set the JAVA_HOME variable in your environment to match the
+echo location of your Java installation.
+
+goto fail
+
+:execute
+@rem Setup the command line
+
+set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
+
+
+@rem Execute Gradle
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*
+
+:end
+@rem End local scope for the variables with windows NT shell
+if "%ERRORLEVEL%"=="0" goto mainEnd
+
+:fail
+rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+rem the _cmd.exe /c_ return code!
+if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
+exit /b 1
+
+:mainEnd
+if "%OS%"=="Windows_NT" endlocal
+
+:omega
+</file>
+
+<file path="settings.gradle">
+plugins {
+    // Permite que Gradle descargue automáticamente el JDK que pide el proyecto (toolchain)
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'prueba'
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/App.java">
+package com.proyecto.servicios;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.info.BuildProperties;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.cache.annotation.EnableCaching;
+
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
+@SpringBootApplication
+@EnableScheduling
+@EnableFeignClients
+@EnableCaching
+
+@Slf4j
+
+public class App implements CommandLineRunner {
+
+    @Autowired
+    private ApplicationContext context;
+
+    public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+    }
+
+    @Override
+    public void run(String... args) {
+        // displayInfo(context.getBean(BuildProperties.class));
+    }
+
+    private static void displayInfo(BuildProperties buildProperties) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                .withZone(ZoneId.systemDefault());
+        String out = formatter.format(buildProperties.getTime());
+        log.info("Nombre artefacto: " + buildProperties.getName() + "\n"
+                + "Versión: " + buildProperties.getVersion() + "\n"
+                + "Fecha Compilación: " + out + "\n"
+                + "Artefacto: " + buildProperties.getArtifact() + "\n"
+                + "Grupo: " + buildProperties.getGroup());
+
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/client/GestoPagoAuthClient.java">
+package com.proyecto.servicios.client;
+
+import com.proyecto.servicios.model.gestopago.GestoPagoAuthResponse;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(name = "gestoPagoAuth", url = "${gestopago.auth.url}")
+public interface GestoPagoAuthClient {
+
+    @PostMapping("/sistema/app/jwt-gp/authenticate/")
+    GestoPagoAuthResponse authenticate(
+            @RequestParam("idDistribuidor") Integer idDistribuidor,
+            @RequestParam("codigoDispositivo") String codigoDispositivo,
+            @RequestParam("password") String password
+    );
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/client/GestoPagoProductClient.java">
+package com.proyecto.servicios.client;
+
+import com.proyecto.servicios.config.GestoPagoProductClientConfig;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@FeignClient(name = "gestoPagoProduct", url = "${gestopago.product.url}", configuration = GestoPagoProductClientConfig.class)
+public interface GestoPagoProductClient {
+
+    /**
+     * Devuelve el XML crudo; GestoPagoXmlParser lo interpreta respetando su
+     * encoding.
+     */
+    @GetMapping("/sistema/service/getProductList.do")
+    byte[] getProductList();
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/client/GestoPagoXmlParser.java">
+package com.proyecto.servicios.client;
+
+import com.proyecto.servicios.exception.GestoPagoUnsuccessfulResponseException;
+import com.proyecto.servicios.model.gestopago.GestoPagoProductListResponse;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import org.springframework.stereotype.Component;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.ByteArrayInputStream;
+
+/**
+ * Convierte el XML de GestoPago en DTOs usando JAXB (DTD y entidades externas
+ * deshabilitadas).
+ */
+@Component
+public class GestoPagoXmlParser {
+
+    private final JAXBContext context;
+    private final XMLInputFactory inputFactory;
+
+    public GestoPagoXmlParser() {
+        this.context = crearContexto();
+        this.inputFactory = XMLInputFactory.newFactory();
+        this.inputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        this.inputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+    }
+
+    public GestoPagoProductListResponse parsear(byte[] xml) {
+        if (xml == null || xml.length == 0) {
+            throw new GestoPagoUnsuccessfulResponseException("GestoPago devolvió una respuesta vacía", null);
+        }
+        XMLStreamReader reader = null;
+        try {
+            reader = inputFactory.createXMLStreamReader(new ByteArrayInputStream(xml));
+            return context.createUnmarshaller()
+                    .unmarshal(reader, GestoPagoProductListResponse.class)
+                    .getValue();
+        } catch (JAXBException | XMLStreamException e) {
+            throw new GestoPagoUnsuccessfulResponseException(
+                    "La respuesta de GestoPago no tiene el formato XML esperado", null, e);
+        } finally {
+            cerrar(reader);
+        }
+    }
+
+    private static JAXBContext crearContexto() {
+        try {
+            return JAXBContext.newInstance(GestoPagoProductListResponse.class);
+        } catch (JAXBException e) {
+            throw new IllegalStateException("No fue posible inicializar el parser XML de GestoPago", e);
+        }
+    }
+
+    private static void cerrar(XMLStreamReader reader) {
+        if (reader == null) {
+            return;
+        }
+        try {
+            reader.close();
+        } catch (XMLStreamException ignored) {
+            // El reader ya no se usa; no hay nada más que liberar.
+        }
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/config/ConfigDB.java">
+package com.proyecto.servicios.config;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import jakarta.persistence.EntityManagerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
+
+
+@Slf4j
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+        basePackages = {
+                "com.proyecto.servicios.repositorys.sf",
+                "com.proyecto.servicios.repositorys.gestopago"
+        },
+        transactionManagerRef = "sfTransactionManager",
+        entityManagerFactoryRef = "sfEntityManagerFactory"
+)
+public class ConfigDB {
+    @Autowired
+    private Environment env;
+
+    @Bean(name="sfDatasource")
+    public DataSource sfDatasource(){
+        HikariConfig config=new HikariConfig();
+        try{
+            config.setJdbcUrl(env.getProperty("spring.datasource.url"));
+            config.setPassword(env.getProperty("spring.datasource.password"));
+            config.setUsername(env.getProperty("spring.datasource.username"));
+            config.setMaximumPoolSize(10);
+            config.setMaxLifetime(18800);
+            config.setConnectionTimeout(5000);
+            config.setValidationTimeout(5000);
+            config.setMinimumIdle(2);
+            config.setConnectionTestQuery("SELECT 1");
+            config.setPoolName("sfDatasource");
+
+        }catch (Exception e){
+            log.error("Ha ocurrido un error en la conexcion a base de datos, a causa de:",e);
+            return null;
+        }
+        return new HikariDataSource(config);
+    }
+
+    @Bean(name="sfEntityManagerFactory")
+    @DependsOn("flyway")
+    public LocalContainerEntityManagerFactoryBean sfEntityManagerFactory(){
+        LocalContainerEntityManagerFactoryBean em= new LocalContainerEntityManagerFactoryBean();
+        try{
+          em.setDataSource(sfDatasource());
+          em.setPackagesToScan(
+                  "com.proyecto.servicios.entity.sf",
+                  "com.proyecto.servicios.entity.gestopago"
+          );
+          em.setPersistenceUnitName("sfDatasource");
+            HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+            em.setJpaVendorAdapter(vendorAdapter);
+          Map<String, Object> properties=new HashMap<>();
+          properties.put("hibernate.hbm2ddl.auto", "none");
+            properties.put("hibernate.show-sql", false);
+            properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+            properties.put("jakarta.persistence.query.timeout", 600000);
+
+
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error en la conexion a base de datos, a causa de:",e);
+            return null;
+
+        }
+        return em;
+    }
+ @Bean(name="sfTransactionManager")
+ public PlatformTransactionManager sfTransactionManager(@Qualifier("sfEntityManagerFactory") EntityManagerFactory sfEntityManagerFactory){
+        return new JpaTransactionManager(sfEntityManagerFactory);
+
+ }
+
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/config/FlywayConfig.java">
+package com.proyecto.servicios.config;
+
+import lombok.extern.slf4j.Slf4j;
+import org.flywaydb.core.Flyway;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
+
+@Slf4j
+@Configuration
+public class FlywayConfig {
+
+    @Value("${spring.flyway.locations:classpath:db/migration}")
+    private String[] locations;
+
+    @Value("${spring.flyway.table:flyway_schema_history}")
+    private String historyTable;
+
+    @Value("${spring.flyway.schemas:public}")
+    private String schema;
+
+    @Bean(name = "flyway")
+    public Flyway flyway(@Qualifier("sfDatasource") DataSource dataSource) {
+        log.info("Iniciando migraciones Flyway en schema '{}'", schema);
+        Flyway flyway = Flyway.configure()
+                .dataSource(dataSource)
+                .locations(locations)
+                .table(historyTable)
+                .schemas(schema)
+                .baselineOnMigrate(true)
+                .baselineVersion("0")
+                .load();
+        flyway.migrate();
+        return flyway;
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/config/GestoPagoBearerTokenInterceptor.java">
+package com.proyecto.servicios.config;
+
+import com.proyecto.servicios.exception.GestoPagoAuthenticationException;
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.util.StringUtils;
+
+/**
+ * Agrega "Authorization: Bearer {token}" y, si está configurada, "X-API-Key".
+ * El token viene de la configuración (gestopago.product.token) y nunca se
+ * registra en logs.
+ */
+public class GestoPagoBearerTokenInterceptor implements RequestInterceptor {
+
+    private static final String BEARER_PREFIX = "Bearer ";
+    private static final String API_KEY_HEADER = "X-API-Key";
+
+    private final String token;
+    private final String apiKey;
+
+    public GestoPagoBearerTokenInterceptor(String token, String apiKey) {
+        this.token = token;
+        this.apiKey = apiKey;
+    }
+
+    @Override
+    public void apply(RequestTemplate template) {
+        if (!StringUtils.hasText(token)) {
+            throw new GestoPagoAuthenticationException("El token de GestoPago no está configurado");
+        }
+        template.header(HttpHeaders.AUTHORIZATION, BEARER_PREFIX + token.trim());
+        if (StringUtils.hasText(apiKey)) {
+            template.header(API_KEY_HEADER, apiKey.trim());
+        }
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/config/GestoPagoErrorDecoder.java">
+package com.proyecto.servicios.config;
+
+import com.proyecto.servicios.exception.GestoPagoAuthenticationException;
+import com.proyecto.servicios.exception.GestoPagoTimeoutException;
+import com.proyecto.servicios.exception.GestoPagoUnsuccessfulResponseException;
+import feign.Response;
+import feign.codec.ErrorDecoder;
+import org.springframework.http.HttpStatus;
+
+/**
+ * Convierte respuestas HTTP no exitosas en excepciones de dominio.
+ * El cuerpo de la respuesta no se lee ni se propaga, para no exponer
+ * información sensible.
+ */
+public class GestoPagoErrorDecoder implements ErrorDecoder {
+
+    @Override
+    public Exception decode(String methodKey, Response response) {
+        int status = response.status();
+
+        if (status == HttpStatus.UNAUTHORIZED.value() || status == HttpStatus.FORBIDDEN.value()) {
+            return new GestoPagoAuthenticationException("GestoPago rechazó el token (inválido o expirado)");
+        }
+        if (status == HttpStatus.REQUEST_TIMEOUT.value() || status == HttpStatus.GATEWAY_TIMEOUT.value()) {
+            return new GestoPagoTimeoutException("GestoPago no respondió a tiempo", null);
+        }
+        return new GestoPagoUnsuccessfulResponseException(
+                "GestoPago respondió con un estado no exitoso: " + status, status);
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/config/GestoPagoProductClientConfig.java">
+package com.proyecto.servicios.config;
+
+import feign.RequestInterceptor;
+import feign.codec.ErrorDecoder;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+
+/**
+ * Configuración exclusiva del cliente Feign "gestoPagoProduct".
+ * NO lleva @Configuration a propósito: así el interceptor del Bearer no se
+ * aplica
+ * a GestoPagoAuthClient ni a otros clientes Feign.
+ */
+public class GestoPagoProductClientConfig {
+
+    @Bean
+    public RequestInterceptor gestoPagoBearerTokenInterceptor(
+            @Value("${gestopago.product.token}") String token,
+            @Value("${gestopago.product.api-key:}") String apiKey) {
+        return new GestoPagoBearerTokenInterceptor(token, apiKey);
+    }
+
+    @Bean
+    public ErrorDecoder gestoPagoErrorDecoder() {
+        return new GestoPagoErrorDecoder();
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/config/OpenApi.java">
+package com.proyecto.servicios.config;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.context.annotation.Bean;
+
+public class OpenApi {
+    @Bean
+    public OpenAPI openAPI(){
+        return new OpenAPI().addServersItem(new Server().url("http://localhost:8081"));
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/controller/GestoPagoProductController.java">
+package com.proyecto.servicios.controller;
+
+import com.proyecto.servicios.model.gestopago.ProductosGestoPagoResponse;
+import com.proyecto.servicios.service.GestoPagoProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class GestoPagoProductController {
+
+    private final GestoPagoProductService productService;
+
+    public GestoPagoProductController(GestoPagoProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping(value = "/gestopago/productos", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ProductosGestoPagoResponse> obtenerProductos() {
+        return new ResponseEntity<>(productService.obtenerProductos(), HttpStatus.OK);
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/controller/PersonaController.java">
+package com.proyecto.servicios.controller;
+
+import com.proyecto.servicios.model.EliminaPersonaRequest;
+import com.proyecto.servicios.model.GenericResponse;
+import com.proyecto.servicios.model.PersonasRequest;
+import com.proyecto.servicios.service.PersonaService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.awt.*;
+
+@RestController
+public class PersonaController {
+
+
+    @Autowired
+    private PersonaService personaService;
+
+
+    @PostMapping(value = "/personas",produces =MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<GenericResponse> crearUser(@Valid @RequestBody PersonasRequest personasRequest){
+
+        return new ResponseEntity<>(personaService.creaPersona(personasRequest), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/personasActualiza", produces =MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<GenericResponse> actualizUser(@Valid @RequestBody PersonasRequest personasRequest){
+
+        return new ResponseEntity<>(personaService.actualizaPersona(personasRequest), HttpStatus.OK);
+    }
+    @PutMapping(value = "/personasElimina", produces =MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<GenericResponse> actualizUser(@Valid @RequestBody EliminaPersonaRequest personasRequest){
+
+        return new ResponseEntity<>(personaService.eliminaPersona(personasRequest), HttpStatus.OK);
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/entity/gestopago/GestoPagoToken.java">
+package com.proyecto.servicios.entity.gestopago;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "gestopago_tokens")
+@Getter
+@Setter
+public class GestoPagoToken {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "id_distribuidor", nullable = false)
+    private Integer idDistribuidor;
+
+    @Column(name = "codigo_dispositivo", nullable = false, length = 100)
+    private String codigoDispositivo;
+
+    @Column(name = "token", nullable = false, columnDefinition = "TEXT")
+    private String token;
+
+    @Column(name = "token_type", length = 50)
+    private String tokenType;
+
+    @Column(name = "expires_in")
+    private Long expiresIn;
+
+    @Column(name = "fecha_creacion", nullable = false, updatable = false)
+    private LocalDateTime fechaCreacion;
+
+    @Column(name = "fecha_actualizacion", nullable = false)
+    private LocalDateTime fechaActualizacion;
+
+    @Column(name = "activo", nullable = false)
+    private Boolean activo = true;
+
+    @PrePersist
+    void onCreate() {
+        fechaCreacion = LocalDateTime.now();
+        fechaActualizacion = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void onUpdate() {
+        fechaActualizacion = LocalDateTime.now();
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/entity/sf/Personas.java">
+package com.proyecto.servicios.entity.sf;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Table(name="personas")
+@Entity
+@Getter
+@Setter
+public class Personas {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer Id;
+    @Column(name="nombre")
+    private String nombre;
+    @Column(name="apellido_paterno")
+    private String apellidoP;
+    @Column(name="apellido_materno")
+   private String apellidoMaterno;
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/exception/GestoPagoAuthenticationException.java">
+package com.proyecto.servicios.exception;
+
+import org.springframework.http.HttpStatus;
+
+/** Token rechazado o expirado (401/403), o token no configurado. */
+public class GestoPagoAuthenticationException extends GestoPagoIntegrationException {
+
+    public GestoPagoAuthenticationException(String message) {
+        super(message, HttpStatus.BAD_GATEWAY);
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/exception/GestoPagoCommunicationException.java">
+package com.proyecto.servicios.exception;
+
+import org.springframework.http.HttpStatus;
+
+/** No fue posible comunicarse con GestoPago (red, DNS, conexión rechazada). */
+public class GestoPagoCommunicationException extends GestoPagoIntegrationException {
+
+    public GestoPagoCommunicationException(String message, Throwable cause) {
+        super(message, HttpStatus.SERVICE_UNAVAILABLE, cause);
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/exception/GestoPagoExceptionHandler.java">
+package com.proyecto.servicios.exception;
+
+import com.proyecto.servicios.controller.GestoPagoProductController;
+import com.proyecto.servicios.model.GenericResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+/**
+ * Convierte los errores de integración en la respuesta estándar del proyecto
+ * (GenericResponse).
+ * Solo aplica a los controllers de GestoPago para no alterar los demás
+ * endpoints.
+ */
+@RestControllerAdvice(assignableTypes = GestoPagoProductController.class)
+public class GestoPagoExceptionHandler {
+
+    private static final int CODIGO_ERROR = 1;
+
+    @ExceptionHandler(GestoPagoIntegrationException.class)
+    public ResponseEntity<GenericResponse> handleIntegrationError(GestoPagoIntegrationException ex) {
+        GenericResponse response = new GenericResponse();
+        response.setCodigo(CODIGO_ERROR);
+        response.setMensaje(ex.getMessage());
+        return new ResponseEntity<>(response, ex.getHttpStatus());
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/exception/GestoPagoIntegrationException.java">
+package com.proyecto.servicios.exception;
+
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+/**
+ * Excepción base de la integración con GestoPago.
+ * Sus mensajes nunca contienen tokens, credenciales ni el cuerpo de la
+ * respuesta del proveedor.
+ */
+@Getter
+public class GestoPagoIntegrationException extends RuntimeException {
+
+    private final HttpStatus httpStatus;
+
+    public GestoPagoIntegrationException(String message, HttpStatus httpStatus) {
+        super(message);
+        this.httpStatus = httpStatus;
+    }
+
+    public GestoPagoIntegrationException(String message, HttpStatus httpStatus, Throwable cause) {
+        super(message, cause);
+        this.httpStatus = httpStatus;
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/exception/GestoPagoTimeoutException.java">
+package com.proyecto.servicios.exception;
+
+import org.springframework.http.HttpStatus;
+
+/** GestoPago no respondió dentro del tiempo configurado. */
+public class GestoPagoTimeoutException extends GestoPagoIntegrationException {
+
+    public GestoPagoTimeoutException(String message, Throwable cause) {
+        super(message, HttpStatus.GATEWAY_TIMEOUT, cause);
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/exception/GestoPagoUnsuccessfulResponseException.java">
+package com.proyecto.servicios.exception;
+
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+/**
+ * GestoPago respondió, pero con un status HTTP no exitoso, un CODIGO distinto
+ * de "01" o un XML inválido.
+ */
+@Getter
+public class GestoPagoUnsuccessfulResponseException extends GestoPagoIntegrationException {
+
+    /**
+     * Status HTTP devuelto por GestoPago; null si el HTTP fue 200 pero el contenido
+     * indica error.
+     */
+    private final Integer providerStatus;
+
+    public GestoPagoUnsuccessfulResponseException(String message, Integer providerStatus) {
+        super(message, HttpStatus.BAD_GATEWAY);
+        this.providerStatus = providerStatus;
+    }
+
+    public GestoPagoUnsuccessfulResponseException(String message, Integer providerStatus, Throwable cause) {
+        super(message, HttpStatus.BAD_GATEWAY, cause);
+        this.providerStatus = providerStatus;
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/mapper/GestoPagoProductMapper.java">
+package com.proyecto.servicios.mapper;
+
+import com.proyecto.servicios.model.gestopago.GestoPagoProductDto;
+import com.proyecto.servicios.model.gestopago.ProductoGestoPago;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring")
+public interface GestoPagoProductMapper {
+
+    @Mapping(target = "nombre", source = "producto")
+    @Mapping(target = "leyenda", source = "legend")
+    ProductoGestoPago toProducto(GestoPagoProductDto dto);
+
+    List<ProductoGestoPago> toProductos(List<GestoPagoProductDto> dtos);
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/mapper/GestoPagoTokenMapper.java">
+package com.proyecto.servicios.mapper;
+
+import com.proyecto.servicios.entity.gestopago.GestoPagoToken;
+import com.proyecto.servicios.model.gestopago.GestoPagoAuthResponse;
+import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
+
+@Mapper(componentModel = "spring")
+public interface GestoPagoTokenMapper {
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "idDistribuidor", ignore = true)
+    @Mapping(target = "codigoDispositivo", ignore = true)
+    @Mapping(target = "activo", ignore = true)
+    @Mapping(target = "fechaCreacion", ignore = true)
+    @Mapping(target = "fechaActualizacion", ignore = true)
+    GestoPagoToken toEntity(GestoPagoAuthResponse response);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "idDistribuidor", ignore = true)
+    @Mapping(target = "codigoDispositivo", ignore = true)
+    @Mapping(target = "activo", ignore = true)
+    @Mapping(target = "fechaCreacion", ignore = true)
+    @Mapping(target = "fechaActualizacion", ignore = true)
+    void updateEntity(GestoPagoAuthResponse response, @MappingTarget GestoPagoToken entity);
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/EliminaPersonaRequest.java">
+package com.proyecto.servicios.model;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class EliminaPersonaRequest {
+    private String nombre;
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/GenericResponse.java">
+package com.proyecto.servicios.model;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class GenericResponse {
+    private Integer codigo;
+    private String mensaje;
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/gestopago/GestoPagoAuthResponse.java">
+package com.proyecto.servicios.model.gestopago;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class GestoPagoAuthResponse {
+
+    private String token;
+
+    private String message;
+
+    private Integer status;
+
+    @JsonProperty("token_type")
+    private String tokenType;
+
+    @JsonProperty("expires_in")
+    private Long expiresIn;
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/gestopago/GestoPagoMensaje.java">
+package com.proyecto.servicios.model.gestopago;
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import lombok.Data;
+
+@Data
+@XmlAccessorType(XmlAccessType.FIELD)
+public class GestoPagoMensaje {
+
+    /** Es String porque el proveedor responde con cero a la izquierda ("01"). */
+    @XmlElement(name = "CODIGO")
+    private String codigo;
+
+    @XmlElement(name = "TEXTO")
+    private String texto;
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/gestopago/GestoPagoProductDto.java">
+package com.proyecto.servicios.model.gestopago;
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import lombok.Data;
+
+import java.math.BigDecimal;
+
+/**
+ * Elemento <producto> de getProductList.do; sus datos vienen como atributos.
+ */
+@Data
+@XmlAccessorType(XmlAccessType.FIELD)
+public class GestoPagoProductDto {
+
+    @XmlAttribute
+    private Integer idProducto;
+
+    @XmlAttribute
+    private Integer idServicio;
+
+    @XmlAttribute
+    private String servicio;
+
+    @XmlAttribute
+    private String producto;
+
+    @XmlAttribute
+    private Integer idCatTipoServicio;
+
+    @XmlAttribute
+    private Integer tipoFront;
+
+    @XmlAttribute
+    private BigDecimal precio;
+
+    @XmlAttribute
+    private String tipoReferencia;
+
+    @XmlElement
+    private String legend;
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/gestopago/GestoPagoProductListResponse.java">
+package com.proyecto.servicios.model.gestopago;
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+
+import java.util.List;
+
+/** Respuesta de GET /sistema/service/getProductList.do (raíz <RESPONSE>). */
+@Data
+@XmlRootElement(name = "RESPONSE")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class GestoPagoProductListResponse {
+
+    @XmlElement(name = "MENSAJE")
+    private GestoPagoMensaje mensaje;
+
+    @XmlElementWrapper(name = "PRODUCTOS")
+    @XmlElement(name = "producto")
+    private List<GestoPagoProductDto> productos;
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/gestopago/ProductoGestoPago.java">
+package com.proyecto.servicios.model.gestopago;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class ProductoGestoPago {
+    private Integer idProducto;
+    private Integer idServicio;
+    private String nombre;
+    private String servicio;
+    private Integer idCatTipoServicio;
+    private Integer tipoFront;
+    private BigDecimal precio;
+    private String tipoReferencia;
+    private String leyenda;
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/gestopago/ProductosGestoPagoResponse.java">
+package com.proyecto.servicios.model.gestopago;
+
+import com.proyecto.servicios.model.GenericResponse;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class ProductosGestoPagoResponse extends GenericResponse {
+    private Integer total;
+    private List<ProductoGestoPago> productos = new ArrayList<>();
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/PersonaResponse.java">
+package com.proyecto.servicios.model;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class PersonaResponse  extends  GenericResponse{
+    private String nombre;
+    private String apellidoP;
+    private String apellidoMaterno;
+
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/model/PersonasRequest.java">
+package com.proyecto.servicios.model;
+
+import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class PersonasRequest {
+
+    private String nombre;
+    private String apellidoP;
+    private String apellidoMaterno;
+
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/repositorys/gestopago/GestoPagoTokenRepository.java">
+package com.proyecto.servicios.repositorys.gestopago;
+
+import com.proyecto.servicios.entity.gestopago.GestoPagoToken;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface GestoPagoTokenRepository extends JpaRepository<GestoPagoToken, Integer> {
+
+    Optional<GestoPagoToken> findByIdDistribuidorAndCodigoDispositivo(Integer idDistribuidor, String codigoDispositivo);
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/repositorys/sf/PersonasRepository.java">
+package com.proyecto.servicios.repositorys.sf;
+
+import com.proyecto.servicios.entity.sf.Personas;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface PersonasRepository  extends JpaRepository<Personas, Integer> {
+
+
+    Optional<Personas> findByNombre(String nombre);
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/service/GestoPagoProductService.java">
+package com.proyecto.servicios.service;
+
+import com.proyecto.servicios.model.gestopago.ProductosGestoPagoResponse;
+
+public interface GestoPagoProductService {
+
+    /**
+     * Consulta el catálogo de productos en GestoPago.
+     *
+     * @throws com.proyecto.servicios.exception.GestoPagoIntegrationException si la
+     *                                                                        integración
+     *                                                                        falla
+     */
+    ProductosGestoPagoResponse obtenerProductos();
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/service/GestoPagoTokenService.java">
+package com.proyecto.servicios.service;
+
+import com.proyecto.servicios.entity.gestopago.GestoPagoToken;
+
+import java.util.Optional;
+
+public interface GestoPagoTokenService {
+
+    void renovarToken();
+
+    Optional<GestoPagoToken> obtenerTokenActivo(Integer idDistribuidor, String codigoDispositivo);
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/service/Impl/GestoPagoProductServiceImpl.java">
+package com.proyecto.servicios.service.Impl;
+
+import com.proyecto.servicios.client.GestoPagoProductClient;
+import com.proyecto.servicios.client.GestoPagoXmlParser;
+import com.proyecto.servicios.exception.GestoPagoCommunicationException;
+import com.proyecto.servicios.exception.GestoPagoIntegrationException;
+import com.proyecto.servicios.exception.GestoPagoTimeoutException;
+import com.proyecto.servicios.exception.GestoPagoUnsuccessfulResponseException;
+import com.proyecto.servicios.mapper.GestoPagoProductMapper;
+import com.proyecto.servicios.model.gestopago.GestoPagoMensaje;
+import com.proyecto.servicios.model.gestopago.GestoPagoProductListResponse;
+import com.proyecto.servicios.model.gestopago.ProductoGestoPago;
+import com.proyecto.servicios.model.gestopago.ProductosGestoPagoResponse;
+import com.proyecto.servicios.service.GestoPagoProductService;
+import feign.FeignException;
+import feign.RetryableException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import java.net.SocketTimeoutException;
+import java.util.Collections;
+import java.util.List;
+
+@Service
+@Slf4j
+public class GestoPagoProductServiceImpl implements GestoPagoProductService {
+
+    public static final String CACHE_PRODUCTOS = "gestopagoProductos";
+
+    private static final String OPERACION = "getProductList";
+    private static final String CODIGO_EXITO_PROVEEDOR = "01";
+    private static final int CODIGO_EXITO = 0;
+    private static final String MENSAJE_EXITO = "Exito";
+
+    private final GestoPagoProductClient productClient;
+    private final GestoPagoXmlParser xmlParser;
+    private final GestoPagoProductMapper productMapper;
+
+    public GestoPagoProductServiceImpl(GestoPagoProductClient productClient,
+            GestoPagoXmlParser xmlParser,
+            GestoPagoProductMapper productMapper) {
+        this.productClient = productClient;
+        this.xmlParser = xmlParser;
+        this.productMapper = productMapper;
+    }
+
+    /**
+     * GestoPago permite máximo 3 consultas diarias a getProductList,
+     * por eso la respuesta exitosa se guarda en caché (los errores no se guardan).
+     */
+    @Override
+    @Cacheable(CACHE_PRODUCTOS)
+    public ProductosGestoPagoResponse obtenerProductos() {
+        long inicio = System.currentTimeMillis();
+        log.info("Inicio invocación GestoPago operacion={}", OPERACION);
+        try {
+            GestoPagoProductListResponse respuesta = xmlParser.parsear(invocarProveedor());
+            validarCodigoProveedor(respuesta.getMensaje());
+            ProductosGestoPagoResponse resultado = construirRespuesta(respuesta);
+            log.info("Fin invocación GestoPago operacion={} resultado=OK productos={} duracionMs={}",
+                    OPERACION, resultado.getTotal(), duracion(inicio));
+            return resultado;
+        } catch (GestoPagoIntegrationException e) {
+            log.error("Fin invocación GestoPago operacion={} resultado=ERROR tipo={} detalle={} duracionMs={}",
+                    OPERACION, e.getClass().getSimpleName(), e.getMessage(), duracion(inicio));
+            throw e;
+        }
+    }
+
+    /**
+     * Limpia la caché una vez al día para volver a consultar el catálogo
+     * actualizado.
+     */
+    @Scheduled(cron = "${gestopago.product.cache-refresh-cron:0 0 3 * * *}")
+    @CacheEvict(value = CACHE_PRODUCTOS, allEntries = true)
+    public void limpiarCacheProductos() {
+        log.info("Se limpia la caché del catálogo de productos GestoPago");
+    }
+
+    /**
+     * Invoca al cliente y traduce las excepciones técnicas de Feign a excepciones
+     * de dominio.
+     */
+    private byte[] invocarProveedor() {
+        try {
+            return productClient.getProductList();
+        } catch (GestoPagoIntegrationException e) {
+            throw e;
+        } catch (RetryableException e) {
+            if (esTimeout(e)) {
+                throw new GestoPagoTimeoutException("GestoPago no respondió a tiempo", e);
+            }
+            throw new GestoPagoCommunicationException("No fue posible comunicarse con GestoPago", e);
+        } catch (FeignException e) {
+            throw new GestoPagoCommunicationException("Error de comunicación con GestoPago", e);
+        }
+    }
+
+    private static boolean esTimeout(Throwable error) {
+        for (Throwable causa = error; causa != null; causa = causa.getCause()) {
+            if (causa instanceof SocketTimeoutException) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void validarCodigoProveedor(GestoPagoMensaje mensaje) {
+        String codigo = mensaje == null || mensaje.getCodigo() == null ? null : mensaje.getCodigo().trim();
+        if (!CODIGO_EXITO_PROVEEDOR.equals(codigo)) {
+            throw new GestoPagoUnsuccessfulResponseException(
+                    "GestoPago respondió con código no exitoso: " + codigo, null);
+        }
+    }
+
+    private ProductosGestoPagoResponse construirRespuesta(GestoPagoProductListResponse respuesta) {
+        List<ProductoGestoPago> productos = respuesta.getProductos() == null
+                ? Collections.emptyList()
+                : productMapper.toProductos(respuesta.getProductos());
+
+        ProductosGestoPagoResponse resultado = new ProductosGestoPagoResponse();
+        resultado.setCodigo(CODIGO_EXITO);
+        resultado.setMensaje(MENSAJE_EXITO);
+        resultado.setProductos(productos);
+        resultado.setTotal(productos.size());
+        return resultado;
+    }
+
+    private static long duracion(long inicio) {
+        return System.currentTimeMillis() - inicio;
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/service/Impl/GestoPagoTokenServiceImpl.java">
+package com.proyecto.servicios.service.Impl;
+
+import com.proyecto.servicios.client.GestoPagoAuthClient;
+import com.proyecto.servicios.entity.gestopago.GestoPagoToken;
+import com.proyecto.servicios.mapper.GestoPagoTokenMapper;
+import com.proyecto.servicios.model.gestopago.GestoPagoAuthResponse;
+import com.proyecto.servicios.repositorys.gestopago.GestoPagoTokenRepository;
+import com.proyecto.servicios.service.GestoPagoTokenService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+@Slf4j
+public class GestoPagoTokenServiceImpl implements GestoPagoTokenService {
+
+    private final GestoPagoAuthClient gestoPagoAuthClient;
+    private final GestoPagoTokenRepository tokenRepository;
+    private final GestoPagoTokenMapper tokenMapper;
+
+    @Value("${gestopago.auth.id-distribuidor}")
+    private Integer idDistribuidor;
+
+    @Value("${gestopago.auth.codigo-dispositivo}")
+    private String codigoDispositivo;
+
+    @Value("${gestopago.auth.password}")
+    private String password;
+
+    public GestoPagoTokenServiceImpl(GestoPagoAuthClient gestoPagoAuthClient,
+                                     GestoPagoTokenRepository tokenRepository,
+                                     GestoPagoTokenMapper tokenMapper) {
+        this.gestoPagoAuthClient = gestoPagoAuthClient;
+        this.tokenRepository = tokenRepository;
+        this.tokenMapper = tokenMapper;
+    }
+
+    @Override
+    @Scheduled(fixedRateString = "${gestopago.auth.refresh-rate-ms:3600000}", initialDelay = 0)
+    public void renovarToken() {
+        log.info("Renovando token GestoPago para distribuidor={}", idDistribuidor);
+        try {
+            GestoPagoAuthResponse response = gestoPagoAuthClient.authenticate(
+                    idDistribuidor, codigoDispositivo, password);
+
+            if (response == null || response.getToken() == null) {
+                log.error("La respuesta de GestoPago no contiene token");
+                return;
+            }
+
+            GestoPagoToken tokenEntity = tokenRepository
+                    .findByIdDistribuidorAndCodigoDispositivo(idDistribuidor, codigoDispositivo)
+                    .map(existing -> {
+                        tokenMapper.updateEntity(response, existing);
+                        return existing;
+                    })
+                    .orElseGet(() -> {
+                        GestoPagoToken nuevo = tokenMapper.toEntity(response);
+                        nuevo.setIdDistribuidor(idDistribuidor);
+                        nuevo.setCodigoDispositivo(codigoDispositivo);
+                        nuevo.setActivo(true);
+                        return nuevo;
+                    });
+
+            tokenRepository.save(tokenEntity);
+            log.info("Token GestoPago renovado correctamente");
+
+        } catch (Exception e) {
+            log.error("Error al renovar token GestoPago: {}", e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Optional<GestoPagoToken> obtenerTokenActivo(Integer idDistribuidor, String codigoDispositivo) {
+        return tokenRepository.findByIdDistribuidorAndCodigoDispositivo(idDistribuidor, codigoDispositivo);
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/service/Impl/PersonasServiceImpl.java">
+package com.proyecto.servicios.service.Impl;
+
+import com.proyecto.servicios.entity.sf.Personas;
+import com.proyecto.servicios.model.EliminaPersonaRequest;
+import com.proyecto.servicios.model.GenericResponse;
+import com.proyecto.servicios.model.PersonaResponse;
+import com.proyecto.servicios.model.PersonasRequest;
+import com.proyecto.servicios.repositorys.sf.PersonasRepository;
+import com.proyecto.servicios.service.PersonaService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+@Slf4j
+public class PersonasServiceImpl implements PersonaService {
+    @Autowired
+    private PersonasRepository personasRepository;
+    @Override
+    public PersonaResponse creaPersona(PersonasRequest personasRequest) {
+        PersonaResponse person=new PersonaResponse();
+     Personas persona=new Personas();
+     persona.setNombre(personasRequest.getNombre());
+     persona.setApellidoMaterno(personasRequest.getApellidoMaterno());
+     persona.setApellidoP(personasRequest.getApellidoP());
+     personasRepository.save(persona);
+     person.setCodigo(1);
+     person.setMensaje("Exito");
+     BeanUtils.copyProperties(persona,person);
+
+     return person;
+    }
+
+    @Override
+    public GenericResponse eliminaPersona(EliminaPersonaRequest eliminaPersonaRequest) {
+        GenericResponse genericResponse=new GenericResponse();
+
+        Optional<Personas> existePersona=personasRepository.findByNombre(eliminaPersonaRequest.getNombre());
+        if(existePersona.isPresent()){
+            Personas personaElimina=existePersona.get();
+            personasRepository.delete(personaElimina);
+            genericResponse.setCodigo(0);
+            genericResponse.setMensaje("La persona ha sido eliminada correctamente");
+
+        }else{
+            genericResponse.setCodigo(1);
+            genericResponse.setMensaje("La persona no existe ");
+        }
+       return genericResponse;
+
+    }
+
+    @Override
+    public GenericResponse actualizaPersona(PersonasRequest personasRequest) {
+        GenericResponse genericResponse=new GenericResponse();
+        Optional<Personas> existePersona=personasRepository.findByNombre(personasRequest.getNombre());
+        if(existePersona.isPresent()){
+            Personas personaActualiza=existePersona.get();
+            personaActualiza.setApellidoP(personasRequest.getApellidoP());
+            personaActualiza.setApellidoMaterno(personasRequest.getApellidoMaterno());
+            personasRepository.save(personaActualiza);
+            genericResponse.setCodigo(0);
+            genericResponse.setMensaje("la persona ha sido actualizada correctamente");
+
+        }else{
+            genericResponse.setCodigo(1);
+            genericResponse.setMensaje("La persona no existe ");
+        }
+        return genericResponse;
+    }
+}
+</file>
+
+<file path="src/main/java/com/proyecto/servicios/service/PersonaService.java">
+package com.proyecto.servicios.service;
+
+import com.proyecto.servicios.model.EliminaPersonaRequest;
+import com.proyecto.servicios.model.GenericResponse;
+import com.proyecto.servicios.model.PersonaResponse;
+import com.proyecto.servicios.model.PersonasRequest;
+
+public interface PersonaService {
+    PersonaResponse creaPersona(PersonasRequest personasRequest);
+    GenericResponse eliminaPersona(EliminaPersonaRequest eliminaPersonaRequest);
+    GenericResponse actualizaPersona(PersonasRequest personasRequest);
+}
+</file>
+
+<file path="src/main/resources/application.properties">
+# =====================================================================
+# Los valores sensibles (credenciales y tokens) se leen de variables de
+# entorno o del servidor de configuración. NUNCA escribirlos aquí.
+# =====================================================================
+spring.application.name=prueba
+spring.config.import=optional:configserver:
+
+# ---------------------------------------------------------------------
+# Base de datos
+# ---------------------------------------------------------------------
+spring.datasource.url=${DB_URL:jdbc:postgresql://localhost:5432/prueba}
+spring.datasource.username=${DB_USERNAME:postgres}
+spring.datasource.password=${DB_PASSWORD:}
+
+# ---------------------------------------------------------------------
+# GestoPago - Autenticación (existente)
+# El token dura 24 h y la documentación pide pedir solo uno al día.
+# ---------------------------------------------------------------------
+gestopago.auth.url=${GESTOPAGO_AUTH_URL:https://gestopago.portalventas.net}
+gestopago.auth.id-distribuidor=${GESTOPAGO_ID_DISTRIBUIDOR:0}
+gestopago.auth.codigo-dispositivo=${GESTOPAGO_CODIGO_DISPOSITIVO:}
+gestopago.auth.password=${GESTOPAGO_PASSWORD:}
+gestopago.auth.refresh-rate-ms=86400000
+
+# ---------------------------------------------------------------------
+# GestoPago - Catálogo de productos (nuevo)
+# ---------------------------------------------------------------------
+gestopago.product.url=${GESTOPAGO_PRODUCT_URL:https://gestopago.portalventas.net}
+gestopago.product.token=${GESTOPAGO_PRODUCT_TOKEN:}
+gestopago.product.api-key=${GESTOPAGO_API_KEY:}
+gestopago.product.connect-timeout-ms=5000
+gestopago.product.read-timeout-ms=30000
+gestopago.product.cache-refresh-cron=0 0 3 * * *
+
+# Configuración Feign del cliente "gestoPagoProduct"
+# basic = método, URL, status y duración. Nunca registra headers (el token no se expone).
+spring.cloud.openfeign.client.config.gestoPagoProduct.connect-timeout=${gestopago.product.connect-timeout-ms}
+spring.cloud.openfeign.client.config.gestoPagoProduct.read-timeout=${gestopago.product.read-timeout-ms}
+spring.cloud.openfeign.client.config.gestoPagoProduct.logger-level=basic
+logging.level.com.proyecto.servicios.client.GestoPagoProductClient=DEBUG
+</file>
+
+<file path="src/main/resources/db/migration/V1__create_gestopago_tokens.sql">
+CREATE TABLE IF NOT EXISTS gestopago_tokens (
+    id                  SERIAL PRIMARY KEY,
+    id_distribuidor     INTEGER         NOT NULL,
+    codigo_dispositivo  VARCHAR(100)    NOT NULL,
+    token               TEXT            NOT NULL,
+    token_type          VARCHAR(50),
+    expires_in          BIGINT,
+    fecha_creacion      TIMESTAMP       NOT NULL DEFAULT NOW(),
+    fecha_actualizacion TIMESTAMP       NOT NULL DEFAULT NOW(),
+    activo              BOOLEAN         NOT NULL DEFAULT TRUE,
+    CONSTRAINT uq_gestopago_tokens UNIQUE (id_distribuidor, codigo_dispositivo)
+);
+</file>
+
+<file path="src/test/java/com/proyecto/servicios/config/GestoPagoBearerTokenInterceptorTest.java">
+package com.proyecto.servicios.config;
+
+import com.proyecto.servicios.exception.GestoPagoAuthenticationException;
+import feign.RequestTemplate;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+class GestoPagoBearerTokenInterceptorTest {
+
+    @Test
+    void apply_agregaBearerYApiKey() {
+        RequestTemplate template = new RequestTemplate();
+
+        new GestoPagoBearerTokenInterceptor("abc123", "key-1").apply(template);
+
+        assertThat(template.headers().get("Authorization")).containsExactly("Bearer abc123");
+        assertThat(template.headers().get("X-API-Key")).containsExactly("key-1");
+    }
+
+    @Test
+    void apply_sinApiKey_noAgregaHeader() {
+        RequestTemplate template = new RequestTemplate();
+
+        new GestoPagoBearerTokenInterceptor("abc123", "").apply(template);
+
+        assertThat(template.headers()).doesNotContainKey("X-API-Key");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = "   ")
+    void apply_sinToken_lanzaErrorAutenticacion(String token) {
+        GestoPagoBearerTokenInterceptor interceptor = new GestoPagoBearerTokenInterceptor(token, null);
+
+        assertThatThrownBy(() -> interceptor.apply(new RequestTemplate()))
+                .isInstanceOf(GestoPagoAuthenticationException.class);
+    }
+}
+</file>
+
+<file path="src/test/java/com/proyecto/servicios/config/GestoPagoErrorDecoderTest.java">
+package com.proyecto.servicios.config;
+
+import com.proyecto.servicios.exception.GestoPagoAuthenticationException;
+import com.proyecto.servicios.exception.GestoPagoTimeoutException;
+import com.proyecto.servicios.exception.GestoPagoUnsuccessfulResponseException;
+import feign.Request;
+import feign.RequestTemplate;
+import feign.Response;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class GestoPagoErrorDecoderTest {
+
+    private final GestoPagoErrorDecoder decoder = new GestoPagoErrorDecoder();
+
+    @ParameterizedTest
+    @ValueSource(ints = { 401, 403 })
+    void decode_errorAutenticacion(int status) {
+        assertThat(decoder.decode("getProductList", respuesta(status)))
+                .isInstanceOf(GestoPagoAuthenticationException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { 408, 504 })
+    void decode_timeout(int status) {
+        assertThat(decoder.decode("getProductList", respuesta(status)))
+                .isInstanceOf(GestoPagoTimeoutException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { 400, 404, 500, 503 })
+    void decode_respuestaNoExitosa(int status) {
+        Exception ex = decoder.decode("getProductList", respuesta(status));
+
+        assertThat(ex).isInstanceOf(GestoPagoUnsuccessfulResponseException.class);
+        assertThat(((GestoPagoUnsuccessfulResponseException) ex).getProviderStatus()).isEqualTo(status);
+        assertThat(ex.getMessage()).doesNotContain("EXPIRED");
+    }
+
+    private static Response respuesta(int status) {
+        Request request = Request.create(Request.HttpMethod.GET,
+                "https://gestopago.portalventas.net/sistema/service/getProductList.do",
+                Collections.emptyMap(), null, StandardCharsets.UTF_8, new RequestTemplate());
+        return Response.builder()
+                .status(status)
+                .reason("reason")
+                .request(request)
+                .headers(Collections.emptyMap())
+                .body("{\"success\":false,\"token\":\"EXPIRED\"}", StandardCharsets.UTF_8)
+                .build();
+    }
+}
+</file>
+
+<file path="src/test/java/com/proyecto/servicios/service/Impl/GestoPagoProductServiceImplTest.java">
+package com.proyecto.servicios.service.Impl;
+
+import com.proyecto.servicios.client.GestoPagoProductClient;
+import com.proyecto.servicios.client.GestoPagoXmlParser;
+import com.proyecto.servicios.exception.GestoPagoAuthenticationException;
+import com.proyecto.servicios.exception.GestoPagoCommunicationException;
+import com.proyecto.servicios.exception.GestoPagoTimeoutException;
+import com.proyecto.servicios.exception.GestoPagoUnsuccessfulResponseException;
+import com.proyecto.servicios.mapper.GestoPagoProductMapper;
+import com.proyecto.servicios.model.gestopago.ProductoGestoPago;
+import com.proyecto.servicios.model.gestopago.ProductosGestoPagoResponse;
+import feign.FeignException;
+import feign.RetryableException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mapstruct.factory.Mappers;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.nio.charset.StandardCharsets;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class GestoPagoProductServiceImplTest {
+
+    /** Respuesta basada en el ejemplo de la documentación de GestoPago. */
+    private static final String XML_EXITO = """
+            <?xml version='1.0' encoding='UTF-8'?>
+            <RESPONSE>
+                <MENSAJE>
+                    <CODIGO>01</CODIGO>
+                    <TEXTO>Operacion realizada con exito</TEXTO>
+                </MENSAJE>
+                <PRODUCTOS>
+                    <producto servicio='AGUAKAN' producto='Agua Cancun' idServicio='56' idProducto='185'
+                              idCatTipoServicio='15' tipoFront='2' precio='10.0' tipoReferencia='c'>
+                        <legend><![CDATA[Pago de servicio de agua]]></legend>
+                    </producto>
+                    <producto servicio='TELCEL' producto='Telcel 50' idServicio='133' idProducto='582'
+                              idCatTipoServicio='1' tipoFront='1' precio='50.0' tipoReferencia='n'/>
+                </PRODUCTOS>
+            </RESPONSE>
+            """;
+
+    private static final String XML_SIN_PRODUCTOS = """
+            <?xml version='1.0' encoding='UTF-8'?>
+            <RESPONSE>
+                <MENSAJE><CODIGO>01</CODIGO><TEXTO>Operacion realizada con exito</TEXTO></MENSAJE>
+                <PRODUCTOS/>
+            </RESPONSE>
+            """;
+
+    private static final String XML_CODIGO_ERROR = """
+            <?xml version='1.0' encoding='UTF-8'?>
+            <RESPONSE>
+                <MENSAJE><CODIGO>03</CODIGO><TEXTO>Dispositivo no identificado</TEXTO></MENSAJE>
+            </RESPONSE>
+            """;
+
+    @Mock
+    private GestoPagoProductClient productClient;
+
+    private GestoPagoProductServiceImpl service;
+
+    @BeforeEach
+    void setUp() {
+        GestoPagoProductMapper mapper = Mappers.getMapper(GestoPagoProductMapper.class);
+        service = new GestoPagoProductServiceImpl(productClient, new GestoPagoXmlParser(), mapper);
+    }
+
+    // ------------------------------------------------------------ escenarios
+    // exitosos
+
+    @Test
+    @DisplayName("Respuesta exitosa: interpreta el XML y mapea los productos")
+    void obtenerProductos_respuestaExitosa() {
+        when(productClient.getProductList()).thenReturn(bytes(XML_EXITO));
+
+        ProductosGestoPagoResponse resultado = service.obtenerProductos();
+
+        assertThat(resultado.getCodigo()).isZero();
+        assertThat(resultado.getMensaje()).isEqualTo("Exito");
+        assertThat(resultado.getTotal()).isEqualTo(2);
+
+        ProductoGestoPago primero = resultado.getProductos().get(0);
+        assertThat(primero.getIdProducto()).isEqualTo(185);
+        assertThat(primero.getIdServicio()).isEqualTo(56);
+        assertThat(primero.getNombre()).isEqualTo("Agua Cancun");
+        assertThat(primero.getServicio()).isEqualTo("AGUAKAN");
+        assertThat(primero.getIdCatTipoServicio()).isEqualTo(15);
+        assertThat(primero.getTipoFront()).isEqualTo(2);
+        assertThat(primero.getPrecio()).isEqualByComparingTo("10.0");
+        assertThat(primero.getTipoReferencia()).isEqualTo("c");
+        assertThat(primero.getLeyenda()).isEqualTo("Pago de servicio de agua");
+        verify(productClient).getProductList();
+    }
+
+    @Test
+    @DisplayName("Respuesta exitosa sin productos: devuelve lista vacía")
+    void obtenerProductos_sinProductos() {
+        when(productClient.getProductList()).thenReturn(bytes(XML_SIN_PRODUCTOS));
+
+        ProductosGestoPagoResponse resultado = service.obtenerProductos();
+
+        assertThat(resultado.getTotal()).isZero();
+        assertThat(resultado.getProductos()).isEmpty();
+    }
+
+    // ------------------------------------------------------------ respuestas no
+    // exitosas
+
+    @Test
+    @DisplayName("CODIGO distinto de 01: respuesta no exitosa")
+    void obtenerProductos_codigoNoExitoso() {
+        when(productClient.getProductList()).thenReturn(bytes(XML_CODIGO_ERROR));
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOf(GestoPagoUnsuccessfulResponseException.class)
+                .hasMessageContaining("03");
+    }
+
+    @Test
+    @DisplayName("Cuerpo vacío: respuesta no exitosa")
+    void obtenerProductos_cuerpoVacio() {
+        when(productClient.getProductList()).thenReturn(new byte[0]);
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOf(GestoPagoUnsuccessfulResponseException.class)
+                .hasMessageContaining("vacía");
+    }
+
+    @Test
+    @DisplayName("XML mal formado: respuesta no exitosa")
+    void obtenerProductos_xmlInvalido() {
+        when(productClient.getProductList()).thenReturn(bytes("<RESPONSE><MENSAJE>"));
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOf(GestoPagoUnsuccessfulResponseException.class)
+                .hasMessageContaining("formato");
+    }
+
+    @Test
+    @DisplayName("HTTP 500 del proveedor: se propaga como respuesta no exitosa")
+    void obtenerProductos_http500() {
+        when(productClient.getProductList())
+                .thenThrow(new GestoPagoUnsuccessfulResponseException(
+                        "GestoPago respondió con un estado no exitoso: 500", 500));
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOfSatisfying(GestoPagoUnsuccessfulResponseException.class, e -> {
+                    assertThat(e.getProviderStatus()).isEqualTo(500);
+                    assertThat(e.getHttpStatus()).isEqualTo(HttpStatus.BAD_GATEWAY);
+                });
+    }
+
+    // ------------------------------------------------------------ autenticación
+
+    @Test
+    @DisplayName("Token expirado (403): error de autenticación sin exponer el token")
+    void obtenerProductos_tokenExpirado() {
+        when(productClient.getProductList())
+                .thenThrow(new GestoPagoAuthenticationException("GestoPago rechazó el token (inválido o expirado)"));
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOf(GestoPagoAuthenticationException.class)
+                .hasMessageNotContaining("Bearer");
+    }
+
+    // ------------------------------------------------------------ timeouts y
+    // comunicación
+
+    @Test
+    @DisplayName("Read timeout: GestoPagoTimeoutException")
+    void obtenerProductos_timeout() {
+        RetryableException error = errorDeRed(new SocketTimeoutException("Read timed out"));
+        when(productClient.getProductList()).thenThrow(error);
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOfSatisfying(GestoPagoTimeoutException.class,
+                        e -> assertThat(e.getHttpStatus()).isEqualTo(HttpStatus.GATEWAY_TIMEOUT));
+    }
+
+    @Test
+    @DisplayName("Timeout anidado en la cadena de causas: también se detecta")
+    void obtenerProductos_timeoutAnidado() {
+        RetryableException error = errorDeRed(
+                new IOException("error", new SocketTimeoutException("connect timed out")));
+        when(productClient.getProductList()).thenThrow(error);
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOf(GestoPagoTimeoutException.class);
+    }
+
+    @Test
+    @DisplayName("Conexión rechazada: GestoPagoCommunicationException")
+    void obtenerProductos_conexionRechazada() {
+        RetryableException error = errorDeRed(new ConnectException("Connection refused"));
+        when(productClient.getProductList()).thenThrow(error);
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOfSatisfying(GestoPagoCommunicationException.class,
+                        e -> assertThat(e.getHttpStatus()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE));
+    }
+
+    @Test
+    @DisplayName("Otro error de Feign: GestoPagoCommunicationException")
+    void obtenerProductos_errorFeignGenerico() {
+        FeignException error = mock(FeignException.class);
+        when(productClient.getProductList()).thenThrow(error);
+
+        assertThatThrownBy(() -> service.obtenerProductos())
+                .isInstanceOf(GestoPagoCommunicationException.class);
+    }
+
+    // ------------------------------------------------------------ utilidades
+
+    private static byte[] bytes(String xml) {
+        return xml.getBytes(StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Simula el error que lanza Feign cuando falla la red (timeout, conexión
+     * rechazada, etc.).
+     */
+    private static RetryableException errorDeRed(Throwable causa) {
+        RetryableException error = mock(RetryableException.class);
+        when(error.getCause()).thenReturn(causa);
+        return error;
+    }
+}
+</file>
+
+</files>
